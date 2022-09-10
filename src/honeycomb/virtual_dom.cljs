@@ -19,7 +19,7 @@
   (render [element]
     (let [$e (.createElement js/document (name (:tag element)))]
       (doseq [[attr value] (:attrs element)]
-        (.setAttribute $e attr value))
+        (.setAttribute $e (name attr) (name value)))
       (doseq [child (seq (:children element))]
         (.appendChild $e (render child)))
       $e)))
