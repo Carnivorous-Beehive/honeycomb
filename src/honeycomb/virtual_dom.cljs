@@ -2,10 +2,7 @@
 
 (defn create-element [tag & {:keys [attrs children] :or {attrs '{} children '[]}}]
   (js/Object.create
-   (VirtualDOMElement.
-    tag
-    attrs
-    children)))
+   (VirtualDOMElement. tag attrs children)))
 
 (defrecord VirtualDOMElement [tag attrs children])
 
@@ -19,10 +16,10 @@
   (render [text] (.createTextNode js/document text))
 
   VirtualDOMElement
-  (render [node]
-    (let [e (.createElement js/document (name (:tag node)))]
-      (doseq [[attr value] (:attrs node)]
-        (.setAttribute e attr value))
-      (doseq [child (seq (:children node))]
-        (.appendChild e (render child)))
-      e)))
+  (render [element]
+    (let [$e (.createElement js/document (name (:tag element)))]
+      (doseq [[attr value] (:attrs element)]
+        (.setAttribute $e attr value))
+      (doseq [child (seq (:children element))]
+        (.appendChild $e (render child)))
+      $e)))

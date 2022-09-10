@@ -8,7 +8,5 @@
            :children ["Hello World"
                       (vdom/create-element
                        :img
-                       :attrs {:src "https://media.giphy.com/media/cuPm4p4pClZVC/giphy.gif"})])
-      app (vdom/render dom)]
-  (println dom)
-  app)
+                       :attrs {:src "https://media.giphy.com/media/cuPm4p4pClZVC/giphy.gif"})])]
+  (vdom/render dom))
